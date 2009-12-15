@@ -97,7 +97,7 @@ Test::WWW::Mechanize::Plack - Test Plack programs using WWW::Mechanize
 L<Plack> is a set of PSGI reference server implementations and helper
 utilities for Web application frameworks, exactly like Ruby's Rack.
 L<Test::WWW::Mechanize> is a subclass of L<WWW::Mechanize> that incorporates
-features for web application testing. The L<Test::WWW::Mechanize::Place>
+features for web application testing. The L<Test::WWW::Mechanize::Plack>
 module meshes the two to allow easy testing of L<Plack> applications without
 needing to starting up a web server.
 

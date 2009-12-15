@@ -26,7 +26,7 @@ DESCRIPTION
     Plack is a set of PSGI reference server implementations and helper
     utilities for Web application frameworks, exactly like Ruby's Rack.
     Test::WWW::Mechanize is a subclass of WWW::Mechanize that incorporates
-    features for web application testing. The Test::WWW::Mechanize::Place
+    features for web application testing. The Test::WWW::Mechanize::Plack
     module meshes the two to allow easy testing of Plack applications
     without needing to starting up a web server.
 
