@@ -1,40 +1,28 @@
 package Test::WWW::Mechanize::Plack;
 use strict;
 use warnings;
+use Carp;
 use HTTP::Message::PSGI;
-use Moose;
 use Test::WWW::Mechanize;
 use Try::Tiny;
-extends 'Test::WWW::Mechanize', 'Moose::Object';
+use base 'Test::WWW::Mechanize';
 our $VERSION = '0.33';
-
-has app => (
-    is  => 'rw',
-    isa => 'CodeRef',
-);
 
 my $Test = Test::Builder->new();
 
 sub new {
     my $class = shift;
-
-    my $args = ref $_[0] ? $_[0] : {@_};
+    my %args  = @_;
 
     # Dont let LWP complain about options for our attributes
-    my %attr_options = map {
-        my $n = $_->init_arg;
-        defined $n && exists $args->{$n}
-            ? ( $n => delete $args->{$n} )
-            : ();
-    } $class->meta->get_all_attributes;
+    my $app = $args{app};
+    delete $args{app};
+    confess('Missing argument app') unless $app;
+    confess('Argument app should be a code reference')
+        unless ref($app) && ref($app) eq 'CODE';
 
-    my $obj  = $class->SUPER::new(%$args);
-    my $self = $class->meta->new_object(
-        __INSTANCE__ => $obj,
-        %attr_options
-    );
-
-    $self->BUILDALL;
+    my $self = $class->SUPER::new(%args);
+    $self->{app} = $app;
     return $self;
 }
 
@@ -49,7 +37,7 @@ sub _make_request {
     my $env = $request->to_psgi;
     my $response;
     try {
-        $response = HTTP::Response->from_psgi( $self->app->($env) );
+        $response = HTTP::Response->from_psgi( $self->{app}->($env) );
     }
     catch {
         $Test->diag("Plack error: $_");
