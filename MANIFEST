@@ -1,0 +1,7 @@
+CHANGES
+lib/Test/WWW/Mechanize/Plack.pm
+Makefile.PL
+MANIFEST			This list of files
+README
+t/simple.t
+
