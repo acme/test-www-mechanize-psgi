@@ -1,5 +1,5 @@
 CHANGES
-lib/Test/WWW/Mechanize/Plack.pm
+lib/Test/WWW/Mechanize/PSGI.pm
 Makefile.PL
 MANIFEST			This list of files
 README

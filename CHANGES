@@ -1,4 +1,4 @@
-Revision history for Perl module Test::WWW::Mechanize::Plack:
+Revision history for Perl module Test::WWW::Mechanize::PSGI:
 
 0.33 Fri Jul 10 15:23:02 BST 2009
     - inital release

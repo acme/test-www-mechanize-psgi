@@ -1,4 +1,4 @@
-package Test::WWW::Mechanize::Plack;
+package Test::WWW::Mechanize::PSGI;
 use strict;
 use warnings;
 use Carp;
@@ -40,7 +40,7 @@ sub _make_request {
         $response = HTTP::Response->from_psgi( $self->{app}->($env) );
     }
     catch {
-        $Test->diag("Plack error: $_");
+        $Test->diag("PSGI error: $_");
         $response = HTTP::Response->new(500);
         $response->content($_);
         $response->content_type('');
@@ -56,14 +56,14 @@ __END__
 
 =head1 NAME
 
-Test::WWW::Mechanize::Plack - Test Plack programs using WWW::Mechanize
+Test::WWW::Mechanize::PSGI - Test PSGI programs using WWW::Mechanize
 
 =head1 SYNOPSIS
 
   # We're in a t/*.t test script...
-  use Test::WWW::Mechanize::Plack;
+  use Test::WWW::Mechanize::PSGI;
 
-  my $mech = Test::WWW::Mechanize::Plack->new(
+  my $mech = Test::WWW::Mechanize::PSGI->new(
       app => sub {
           my $env = shift;
           return [
@@ -82,19 +82,18 @@ Test::WWW::Mechanize::Plack - Test Plack programs using WWW::Mechanize
   
 =head1 DESCRIPTION
 
-L<Plack> is a set of PSGI reference server implementations and helper
-utilities for Web application frameworks, exactly like Ruby's Rack.
-L<Test::WWW::Mechanize> is a subclass of L<WWW::Mechanize> that incorporates
-features for web application testing. The L<Test::WWW::Mechanize::Plack>
-module meshes the two to allow easy testing of L<Plack> applications without
-needing to starting up a web server.
+L<PSGI> is a specification to decouple web server environments from
+web application framework code. L<Test::WWW::Mechanize> is a subclass
+of L<WWW::Mechanize> that incorporates features for web application
+testing. The L<Test::WWW::Mechanize::PSGI> module meshes the two to
+allow easy testing of L<PSGI> applications.
 
 Testing web applications has always been a bit tricky, normally
 requiring starting a web server for your application and making real HTTP
-requests to it. This module allows you to test L<Plack> web
+requests to it. This module allows you to test L<PSGI> web
 applications but does not require a server or issue HTTP
 requests. Instead, it passes the HTTP request object directly to
-L<Plack>. Thus you do not need to use a real hostname:
+L<PSGI>. Thus you do not need to use a real hostname:
 "http://localhost/" will do. However, this is optional. The following
 two lines of code do exactly the same thing:
 
@@ -109,7 +108,7 @@ functions for common web testing scenarios. For example:
   $mech->content_contains( "Andy Lester", "My name somewhere" );
   $mech->content_like( qr/(cpan|perl)\.org/, "Link to perl.org or CPAN" );
 
-An alternative to this module is L<Plack::Test>.
+An alternative to this module is L<PSGI::Test>.
 
 =head1 CONSTRUCTOR
 
@@ -118,7 +117,7 @@ An alternative to this module is L<Plack::Test>.
 Behaves like, and calls, L<WWW::Mechanize>'s C<new> method. You should pass
 in your application:
 
-  my $mech = Test::WWW::Mechanize::Plack->new(
+  my $mech = Test::WWW::Mechanize::PSGI->new(
       app => sub {
           my $env = shift;
           return [ 200, [ 'Content-Type' => 'text/plain' ], ['Hello World'] ],;
