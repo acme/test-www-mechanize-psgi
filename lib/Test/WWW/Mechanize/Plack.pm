@@ -421,6 +421,8 @@ The specs allowed are I<fill> (use this fill for the field rather than
 the default) and I<maxlength> (use this as the field's maxlength instead
 of any maxlength specified in the HTML).
 
+=back
+
 =head1 AUTHOR
 
 Leon Brocard <acme@astray.com>.
