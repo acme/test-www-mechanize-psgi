@@ -1,5 +1,8 @@
 Revision history for Perl module Test::WWW::Mechanize::PSGI:
 
+0.34
+    - update the README to reflect the name
+
 0.33 Tue Dec 15 07:12:18 GMT 2009
     - inital release
 
