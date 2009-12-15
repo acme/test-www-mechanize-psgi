@@ -9,8 +9,11 @@ WriteMakefile(
     AUTHOR       => 'Leon Brocard <acme@astray.com>',
     LICENSE      => 'perl',
     PREREQ_PM    => {
+        'Moose'                => '0',
         'Plack'                => '0',
+        'Test::More'           => '0',
         'Test::WWW::Mechanize' => '0',
+        'Try::Tiny'            => '0',
     }
 );
 
