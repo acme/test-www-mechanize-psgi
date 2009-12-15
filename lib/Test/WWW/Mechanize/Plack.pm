@@ -44,6 +44,7 @@ sub _make_request {
     my $uri = $request->uri;
     $uri->scheme('http')    unless defined $uri->scheme;
     $uri->host('localhost') unless defined $uri->host;
+    $self->cookie_jar->add_cookie_header($request) if $self->cookie_jar;
 
     my $env = $request->to_psgi;
     my $response;
@@ -56,6 +57,7 @@ sub _make_request {
         $response->content($_);
         $response->content_type('');
     };
+    $self->cookie_jar->extract_cookies($response) if $self->cookie_jar;
     $response->request($request);
     return $response;
 }
