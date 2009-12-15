@@ -81,10 +81,9 @@ Test::WWW::Mechanize::Plack - Test Plack programs using WWW::Mechanize
           return [
               200,
               [ 'Content-Type' => 'text/html' ],
-              [   '<html><head><title>Hi</title></head><body>Hello World</body></html>'
+              [ '<html><head><title>Hi</title></head><body>Hello World</body></html>'
               ]
-              ],
-              ;
+          ];
       },
   );
   $mech->get_ok('/');

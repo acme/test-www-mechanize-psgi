@@ -24,8 +24,7 @@ my $html = Test::WWW::Mechanize::Plack->new(
             [ 'Content-Type' => 'text/html' ],
             [   '<html><head><title>Hi</title></head><body>Hello World</body></html>'
             ]
-            ],
-            ;
+        ];
     },
 );
 isa_ok( $html, 'Test::WWW::Mechanize::Plack' );

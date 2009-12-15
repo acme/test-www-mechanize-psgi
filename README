@@ -11,10 +11,9 @@ SYNOPSIS
               return [
                   200,
                   [ 'Content-Type' => 'text/html' ],
-                  [   '<html><head><title>Hi</title></head><body>Hello World</body></html>'
+                  [ '<html><head><title>Hi</title></head><body>Hello World</body></html>'
                   ]
-                  ],
-                  ;
+              ];
           },
       );
       $mech->get_ok('/');
@@ -321,11 +320,4 @@ COPYRIGHT
 LICENSE
     This module is free software; you can redistribute it or modify it under
     the same terms as Perl itself.
-
-POD ERRORS
-    Hey! The above document had some coding errors, which are explained
-    below:
-
-    Around line 422:
-        You forgot a '=back' before '=head1'
 
