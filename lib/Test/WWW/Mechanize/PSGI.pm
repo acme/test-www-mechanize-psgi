@@ -108,7 +108,7 @@ functions for common web testing scenarios. For example:
   $mech->content_contains( "Andy Lester", "My name somewhere" );
   $mech->content_like( qr/(cpan|perl)\.org/, "Link to perl.org or CPAN" );
 
-An alternative to this module is L<PSGI::Test>.
+An alternative to this module is L<Plack::Test>.
 
 =head1 CONSTRUCTOR
 
