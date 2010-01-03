@@ -1,6 +1,6 @@
 Revision history for Perl module Test::WWW::Mechanize::PSGI:
 
-0.34
+0.34 Sun Jan  3 12:02:29 GMT 2010
     - update the README to reflect the name
     - fix handling of cookies, patch by tokuhirom
 

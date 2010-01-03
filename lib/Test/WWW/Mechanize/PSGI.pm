@@ -6,7 +6,7 @@ use HTTP::Message::PSGI;
 use Test::WWW::Mechanize;
 use Try::Tiny;
 use base 'Test::WWW::Mechanize';
-our $VERSION = '0.33';
+our $VERSION = '0.34';
 
 my $Test = Test::Builder->new();
 
