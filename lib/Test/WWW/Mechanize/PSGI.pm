@@ -45,8 +45,8 @@ sub _make_request {
         $response->content($_);
         $response->content_type('');
     };
-    $self->cookie_jar->extract_cookies($response) if $self->cookie_jar;
     $response->request($request);
+    $self->cookie_jar->extract_cookies($response) if $self->cookie_jar;
     return $response;
 }
 
