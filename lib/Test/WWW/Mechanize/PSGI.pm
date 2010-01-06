@@ -26,7 +26,7 @@ sub new {
     return $self;
 }
 
-sub _make_request {
+sub simple_request {
     my ( $self, $request ) = @_;
 
     my $uri = $request->uri;
