@@ -173,7 +173,13 @@ I<%parms> is a hashref containing the parms to pass to C<submit_form()>.
 Note that the parms to C<submit_form()> are a hash whereas the parms to
 this function are a hashref.  You have to call this function like:
 
-    $agent->submit_form_ok( {n=>3}, "looking for 3rd link" );
+    $agent->submit_form_ok(
+        form_number => 3,
+        fields      => {
+            username    => 'mungo',
+            password    => 'lost-and-alone',
+        }
+    }, "looking for 3rd form" );
 
 As with other test functions, C<$desc> is optional.  If it is supplied
 then it will display when running the test harness in verbose mode.
