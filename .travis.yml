@@ -1,0 +1,16 @@
+sudo: false
+language: perl
+perl:
+  - "5.22"
+  - "5.20"
+  - "5.18"
+  - "5.16"
+  - "5.14"
+script:
+  - "prove -lr t"
+notifications:
+  email:
+    recipients:
+      - olaf@wundersolutions.com
+    on_success: always
+    on_failure: always
