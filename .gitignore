@@ -1,2 +1,3 @@
 *.swp
 Test-WWW-Mechanize-PSGI-*
+.tidyall.d
