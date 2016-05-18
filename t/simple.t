@@ -22,7 +22,8 @@ my $html = Test::WWW::Mechanize::PSGI->new(
         return [
             200,
             [ 'Content-Type' => 'text/html' ],
-            [   '<html><head><title>Hi</title></head><body>Hello World</body></html>'
+            [
+                '<html><head><title>Hi</title></head><body>Hello World</body></html>'
             ]
         ];
     },

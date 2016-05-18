@@ -1,12 +1,14 @@
 package Test::WWW::Mechanize::PSGI;
+
 use strict;
 use warnings;
+
 use Carp;
 use HTTP::Message::PSGI;
 use Test::WWW::Mechanize;
 use Try::Tiny;
+
 use base 'Test::WWW::Mechanize';
-our $VERSION = '0.34';
 
 my $Test = Test::Builder->new();
 
@@ -29,7 +31,7 @@ sub new {
 sub simple_request {
     my ( $self, $request ) = @_;
 
-    $self->run_handlers("request_send", $request);
+    $self->run_handlers( "request_send", $request );
 
     my $uri = $request->uri;
     $uri->scheme('http')    unless defined $uri->scheme;
@@ -47,7 +49,7 @@ sub simple_request {
         $response->content_type('');
     };
     $response->request($request);
-    $self->run_handlers("response_done", $response);
+    $self->run_handlers( "response_done", $response );
     return $response;
 }
 
@@ -55,9 +57,7 @@ sub simple_request {
 
 __END__
 
-=head1 NAME
-
-Test::WWW::Mechanize::PSGI - Test PSGI programs using WWW::Mechanize
+# ABSTRACT: Test PSGI programs using WWW::Mechanize
 
 =head1 SYNOPSIS
 
@@ -80,7 +80,7 @@ Test::WWW::Mechanize::PSGI - Test PSGI programs using WWW::Mechanize
   $mech->title_is('Hi');
   $mech->content_contains('Hello World');
   # ... and all other Test::WWW::Mechanize methods
-  
+
 =head1 DESCRIPTION
 
 L<PSGI> is a specification to decouple web server environments from
@@ -416,16 +416,4 @@ of any maxlength specified in the HTML).
 
 =back
 
-=head1 AUTHOR
-
-Leon Brocard <acme@astray.com>.
-
-=head1 COPYRIGHT
-
-Copyright (C) 2009, Leon Brocard
-
-=head1 LICENSE
-
-This module is free software; you can redistribute it or modify it
-under the same terms as Perl itself.
-
+=cut

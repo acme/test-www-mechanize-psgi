@@ -1,5 +1,6 @@
 Revision history for Perl module Test::WWW::Mechanize::PSGI:
 
+{{$NEXT}}
     - run request_send handlers before sending request (Olaf Alders)
 
 0.34 Sun Jan  3 12:02:29 GMT 2010
@@ -7,5 +8,5 @@ Revision history for Perl module Test::WWW::Mechanize::PSGI:
     - fix handling of cookies, patch by tokuhirom
 
 0.33 Tue Dec 15 07:12:18 GMT 2009
-    - inital release
+    - initial release
 

@@ -1,10 +1,8 @@
-NAME
-    Test::WWW::Mechanize::PSGI - Test PSGI programs using WWW::Mechanize
-
 SYNOPSIS
+
       # We're in a t/*.t test script...
       use Test::WWW::Mechanize::PSGI;
-
+    
       my $mech = Test::WWW::Mechanize::PSGI->new(
           app => sub {
               my $env = shift;
@@ -23,6 +21,7 @@ SYNOPSIS
       # ... and all other Test::WWW::Mechanize methods
 
 DESCRIPTION
+
     PSGI is a specification to decouple web server environments from web
     application framework code. Test::WWW::Mechanize is a subclass of
     WWW::Mechanize that incorporates features for web application testing.
@@ -33,10 +32,10 @@ DESCRIPTION
     requiring starting a web server for your application and making real
     HTTP requests to it. This module allows you to test PSGI web
     applications but does not require a server or issue HTTP requests.
-    Instead, it passes the HTTP request object directly to PSGI. Thus you do
-    not need to use a real hostname: "http://localhost/" will do. However,
-    this is optional. The following two lines of code do exactly the same
-    thing:
+    Instead, it passes the HTTP request object directly to PSGI. Thus you
+    do not need to use a real hostname: "http://localhost/" will do.
+    However, this is optional. The following two lines of code do exactly
+    the same thing:
 
       $mech->get_ok('/action');
       $mech->get_ok('http://localhost/action');
@@ -52,8 +51,10 @@ DESCRIPTION
     An alternative to this module is Plack::Test.
 
 CONSTRUCTOR
-  new
-    Behaves like, and calls, WWW::Mechanize's "new" method. You should pass
+
+ new
+
+    Behaves like, and calls, WWW::Mechanize's new method. You should pass
     in your application:
 
       my $mech = Test::WWW::Mechanize::PSGI->new(
@@ -64,48 +65,54 @@ CONSTRUCTOR
       );
 
 METHODS: HTTP VERBS
-  $mech->get_ok($url, [ \%LWP_options ,] $desc)
+
+ $mech->get_ok($url, [ \%LWP_options ,] $desc)
+
     A wrapper around WWW::Mechanize's get(), with similar options, except
     the second argument needs to be a hash reference, not a hash. Like
-    well-behaved "*_ok()" functions, it returns true if the test passed, or
+    well-behaved *_ok() functions, it returns true if the test passed, or
     false if not.
 
     A default description of "GET $url" is used if none if provided.
 
-  $mech->head_ok($url, [ \%LWP_options ,] $desc)
+ $mech->head_ok($url, [ \%LWP_options ,] $desc)
+
     A wrapper around WWW::Mechanize's head(), with similar options, except
     the second argument needs to be a hash reference, not a hash. Like
-    well-behaved "*_ok()" functions, it returns true if the test passed, or
+    well-behaved *_ok() functions, it returns true if the test passed, or
     false if not.
 
     A default description of "HEAD $url" is used if none if provided.
 
-  $mech->post_ok( $url, [ \%LWP_options ,] $desc )
+ $mech->post_ok( $url, [ \%LWP_options ,] $desc )
+
     A wrapper around WWW::Mechanize's post(), with similar options, except
     the second argument needs to be a hash reference, not a hash. Like
-    well-behaved "*_ok()" functions, it returns true if the test passed, or
+    well-behaved *_ok() functions, it returns true if the test passed, or
     false if not.
 
     A default description of "POST to $url" is used if none if provided.
 
-  $mech->put_ok( $url, [ \%LWP_options ,] $desc )
+ $mech->put_ok( $url, [ \%LWP_options ,] $desc )
+
     A wrapper around WWW::Mechanize's put(), with similar options, except
     the second argument needs to be a hash reference, not a hash. Like
-    well-behaved "*_ok()" functions, it returns true if the test passed, or
+    well-behaved *_ok() functions, it returns true if the test passed, or
     false if not.
 
     A default description of "PUT to $url" is used if none if provided.
 
-  $mech->submit_form_ok( \%parms [, $desc] )
-    Makes a "submit_form()" call and executes tests on the results. The form
+ $mech->submit_form_ok( \%parms [, $desc] )
+
+    Makes a submit_form() call and executes tests on the results. The form
     must be found, and then submitted successfully. Otherwise, this test
     fails.
 
-    *%parms* is a hashref containing the parms to pass to "submit_form()".
-    Note that the parms to "submit_form()" are a hash whereas the parms to
-    this function are a hashref. You have to call this function like:
+    %parms is a hashref containing the parms to pass to submit_form(). Note
+    that the parms to submit_form() are a hash whereas the parms to this
+    function are a hashref. You have to call this function like:
 
-        $agent->submit_form_ok( {
+        $agent->submit_form_ok(
             form_number => 3,
             fields      => {
                 username    => 'mungo',
@@ -117,17 +124,18 @@ METHODS: HTTP VERBS
     it will display when running the test harness in verbose mode.
 
     Returns true value if the specified link was found and followed
-    successfully. The HTTP::Response object returned by submit_form() is not
-    available.
+    successfully. The HTTP::Response object returned by submit_form() is
+    not available.
 
-  $mech->follow_link_ok( \%parms [, $desc] )
-    Makes a "follow_link()" call and executes tests on the results. The link
+ $mech->follow_link_ok( \%parms [, $desc] )
+
+    Makes a follow_link() call and executes tests on the results. The link
     must be found, and then followed successfully. Otherwise, this test
     fails.
 
-    *%parms* is a hashref containing the parms to pass to "follow_link()".
-    Note that the parms to "follow_link()" are a hash whereas the parms to
-    this function are a hashref. You have to call this function like:
+    %parms is a hashref containing the parms to pass to follow_link(). Note
+    that the parms to follow_link() are a hash whereas the parms to this
+    function are a hashref. You have to call this function like:
 
         $mech->follow_link_ok( {n=>3}, "looking for 3rd link" );
 
@@ -135,122 +143,147 @@ METHODS: HTTP VERBS
     it will display when running the test harness in verbose mode.
 
     Returns a true value if the specified link was found and followed
-    successfully. The HTTP::Response object returned by follow_link() is not
-    available.
+    successfully. The HTTP::Response object returned by follow_link() is
+    not available.
 
-  click_ok( $button[, $desc] )
+ click_ok( $button[, $desc] )
+
     Clicks the button named by $button. An optional $desc can be given for
     the test.
 
 METHODS: CONTENT CHECKING
-  $mech->html_lint_ok( [$desc] )
+
+ $mech->html_lint_ok( [$desc] )
+
     Checks the validity of the HTML on the current page. If the page is not
-    HTML, then it fails. The URI is automatically appended to the *$desc*.
+    HTML, then it fails. The URI is automatically appended to the $desc.
 
     Note that HTML::Lint must be installed for this to work. Otherwise, it
     will blow up.
 
-  $mech->title_is( $str [, $desc ] )
+ $mech->title_is( $str [, $desc ] )
+
     Tells if the title of the page is the given string.
 
         $mech->title_is( "Invoice Summary" );
 
-  $mech->title_like( $regex [, $desc ] )
+ $mech->title_like( $regex [, $desc ] )
+
     Tells if the title of the page matches the given regex.
 
         $mech->title_like( qr/Invoices for (.+)/
 
-  $mech->title_unlike( $regex [, $desc ] )
+ $mech->title_unlike( $regex [, $desc ] )
+
     Tells if the title of the page matches the given regex.
 
         $mech->title_unlike( qr/Invoices for (.+)/
 
-  $mech->base_is( $str [, $desc ] )
+ $mech->base_is( $str [, $desc ] )
+
     Tells if the base of the page is the given string.
 
         $mech->base_is( "http://example.com/" );
 
-  $mech->base_like( $regex [, $desc ] )
+ $mech->base_like( $regex [, $desc ] )
+
     Tells if the base of the page matches the given regex.
 
         $mech->base_like( qr{http://example.com/index.php?PHPSESSID=(.+)});
 
-  $mech->base_unlike( $regex [, $desc ] )
+ $mech->base_unlike( $regex [, $desc ] )
+
     Tells if the base of the page matches the given regex.
 
         $mech->base_unlike( qr{http://example.com/index.php?PHPSESSID=(.+)});
 
-  $mech->content_is( $str [, $desc ] )
+ $mech->content_is( $str [, $desc ] )
+
     Tells if the content of the page matches the given string
 
-  $mech->content_contains( $str [, $desc ] )
-    Tells if the content of the page contains *$str*.
+ $mech->content_contains( $str [, $desc ] )
 
-  $mech->content_lacks( $str [, $desc ] )
-    Tells if the content of the page lacks *$str*.
+    Tells if the content of the page contains $str.
 
-  $mech->content_like( $regex [, $desc ] )
-    Tells if the content of the page matches *$regex*.
+ $mech->content_lacks( $str [, $desc ] )
 
-  $mech->content_unlike( $regex [, $desc ] )
-    Tells if the content of the page does NOT match *$regex*.
+    Tells if the content of the page lacks $str.
 
-  $mech->has_tag( $tag, $text [, $desc ] )
+ $mech->content_like( $regex [, $desc ] )
+
+    Tells if the content of the page matches $regex.
+
+ $mech->content_unlike( $regex [, $desc ] )
+
+    Tells if the content of the page does NOT match $regex.
+
+ $mech->has_tag( $tag, $text [, $desc ] )
+
     Tells if the page has a $tag tag with the given content in its text.
 
-  $mech->has_tag_like( $tag, $regex [, $desc ] )
+ $mech->has_tag_like( $tag, $regex [, $desc ] )
+
     Tells if the page has a $tag tag with the given content in its text.
 
-  $mech->followable_links()
+ $mech->followable_links()
+
     Returns a list of links that Mech can follow. This is only http and
     https links.
 
-  $mech->page_links_ok( [ $desc ] )
+ $mech->page_links_ok( [ $desc ] )
+
     Follow all links on the current page and test for HTTP status 200
 
         $mech->page_links_ok('Check all links');
 
-  $mech->page_links_content_like( $regex [, $desc ] )
+ $mech->page_links_content_like( $regex [, $desc ] )
+
     Follow all links on the current page and test their contents for
-    *$regex*.
+    $regex.
 
         $mech->page_links_content_like( qr/foo/,
           'Check all links contain "foo"' );
 
-  $mech->links_ok( $links [, $desc ] )
-    Follow specified links on the current page and test for HTTP status 200.
-    The links may be specified as a reference to an array containing
+ $mech->links_ok( $links [, $desc ] )
+
+    Follow specified links on the current page and test for HTTP status
+    200. The links may be specified as a reference to an array containing
     WWW::Mechanize::Link objects, an array of URLs, or a scalar URL name.
 
         my @links = $mech->find_all_links( url_regex => qr/cnn\.com$/ );
         $mech->links_ok( \@links, 'Check all links for cnn.com' );
-
+    
         my @links = qw( index.html search.html about.html );
         $mech->links_ok( \@links, 'Check main links' );
-
+    
         $mech->links_ok( 'index.html', 'Check link to index' );
 
-  $mech->link_status_is( $links, $status [, $desc ] )
+ $mech->link_status_is( $links, $status [, $desc ] )
+
     Follow specified links on the current page and test for HTTP status
-    passed. The links may be specified as a reference to an array containing
-    WWW::Mechanize::Link objects, an array of URLs, or a scalar URL name.
+    passed. The links may be specified as a reference to an array
+    containing WWW::Mechanize::Link objects, an array of URLs, or a scalar
+    URL name.
 
         my @links = $mech->followable_links();
         $mech->link_status_is( \@links, 403,
           'Check all links are restricted' );
 
-  $mech->link_status_isnt( $links, $status [, $desc ] )
+ $mech->link_status_isnt( $links, $status [, $desc ] )
+
     Follow specified links on the current page and test for HTTP status
-    passed. The links may be specified as a reference to an array containing
-    WWW::Mechanize::Link objects, an array of URLs, or a scalar URL name.
+    passed. The links may be specified as a reference to an array
+    containing WWW::Mechanize::Link objects, an array of URLs, or a scalar
+    URL name.
 
         my @links = $mech->followable_links();
         $mech->link_status_isnt( \@links, 404,
           'Check all links are not 404' );
 
-  $mech->link_content_like( $links, $regex [, $desc ] )
+ $mech->link_content_like( $links, $regex [, $desc ] )
+
     Follow specified links on the current page and test the resulting
-    content of each against *$regex*. The links may be specified as a
+    content of each against $regex. The links may be specified as a
     reference to an array containing WWW::Mechanize::Link objects, an array
     of URLs, or a scalar URL name.
 
@@ -258,9 +291,10 @@ METHODS: CONTENT CHECKING
         $mech->link_content_like( \@links, qr/Restricted/,
             'Check all links are restricted' );
 
-  $mech->link_content_unlike( $links, $regex [, $desc ] )
+ $mech->link_content_unlike( $links, $regex [, $desc ] )
+
     Follow specified links on the current page and test that the resulting
-    content of each does not match *$regex*. The links may be specified as a
+    content of each does not match $regex. The links may be specified as a
     reference to an array containing WWW::Mechanize::Link objects, an array
     of URLs, or a scalar URL name.
 
@@ -268,12 +302,13 @@ METHODS: CONTENT CHECKING
         $mech->link_content_unlike( \@links, qr/Restricted/,
           'No restricted links' );
 
-  $mech->stuff_inputs( [\%options] )
+ $mech->stuff_inputs( [\%options] )
+
     Finds all free-text input fields (text, textarea, and password) in the
     current form and fills them to their maximum length in hopes of finding
-    application code that can't handle it. Fields with no maximum length and
-    all textarea fields are set to 66000 bytes, which will often be enough
-    to overflow the data's eventual recepticle.
+    application code that can't handle it. Fields with no maximum length
+    and all textarea fields are set to 66000 bytes, which will often be
+    enough to overflow the data's eventual recepticle.
 
     There is no return value.
 
@@ -281,48 +316,38 @@ METHODS: CONTENT CHECKING
 
     The hashref $options can contain the following keys:
 
-    *   ignore
+      * ignore
 
-        hash value is arrayref of field names to not touch, e.g.:
+      hash value is arrayref of field names to not touch, e.g.:
 
-            $mech->stuff_inputs( {
-                ignore => [qw( specialfield1 specialfield2 )],
-            } );
+          $mech->stuff_inputs( {
+              ignore => [qw( specialfield1 specialfield2 )],
+          } );
 
-    *   fill
+      * fill
 
-        hash value is default string to use when stuffing fields. Copies of
-        the string are repeated up to the max length of each field. E.g.:
+      hash value is default string to use when stuffing fields. Copies of
+      the string are repeated up to the max length of each field. E.g.:
 
-            $mech->stuff_inputs( {
-                fill => '@'  # stuff all fields with something easy to recognize
-            } );
+          $mech->stuff_inputs( {
+              fill => '@'  # stuff all fields with something easy to recognize
+          } );
 
-    *   specs
+      * specs
 
-        hash value is arrayref of hashrefs with which you can pass detailed
-        instructions about how to stuff a given field. E.g.:
+      hash value is arrayref of hashrefs with which you can pass detailed
+      instructions about how to stuff a given field. E.g.:
 
-            $mech->stuff_inputs( {
-                specs=>{
-                    # Some fields are datatype-constrained.  It's most common to
-                    # want the field stuffed with valid data.
-                    widget_quantity => { fill=>'9' },
-                    notes => { maxlength=>2000 },
-                }
-            } );
+          $mech->stuff_inputs( {
+              specs=>{
+                  # Some fields are datatype-constrained.  It's most common to
+                  # want the field stuffed with valid data.
+                  widget_quantity => { fill=>'9' },
+                  notes => { maxlength=>2000 },
+              }
+          } );
 
-        The specs allowed are *fill* (use this fill for the field rather
-        than the default) and *maxlength* (use this as the field's maxlength
-        instead of any maxlength specified in the HTML).
-
-AUTHOR
-    Leon Brocard <acme@astray.com>.
-
-COPYRIGHT
-    Copyright (C) 2009, Leon Brocard
-
-LICENSE
-    This module is free software; you can redistribute it or modify it under
-    the same terms as Perl itself.
+      The specs allowed are fill (use this fill for the field rather than
+      the default) and maxlength (use this as the field's maxlength instead
+      of any maxlength specified in the HTML).
 

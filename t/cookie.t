@@ -19,7 +19,8 @@ my $hello = Test::WWW::Mechanize::PSGI->new(
                     [$content]
                     ],
                     ;
-            } else {
+            }
+            else {
                 $cookie_store->{$sid} = "OK";
                 return [
                     200, [ 'Set-Cookie' => "sid=$sid; path=/" ],
