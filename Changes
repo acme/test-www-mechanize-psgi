@@ -1,6 +1,8 @@
 Revision history for Perl module Test::WWW::Mechanize::PSGI:
 
 {{$NEXT}}
+
+0.35 2016-05-19 17:23:53 America/Toronto
     - run request_send handlers before sending request (Olaf Alders)
 
 0.34 Sun Jan  3 12:02:29 GMT 2010
