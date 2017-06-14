@@ -1,6 +1,7 @@
 Revision history for Perl module Test::WWW::Mechanize::PSGI:
 
 {{$NEXT}}
+    - Make the submit_form_ok example runnable (Tadeusz Sośnierz)
 
 0.36 2016-05-28 08:24:37 America/Toronto
     - The previous release should have been 0.36, so bumping the version and

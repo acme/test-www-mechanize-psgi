@@ -1,0 +1,85 @@
+{
+   "abstract" : "Test PSGI programs using WWW::Mechanize",
+   "author" : [
+      "Leon Brocard <acme@astray.com>"
+   ],
+   "dynamic_config" : 0,
+   "generated_by" : "Dist::Zilla version 6.009, CPAN::Meta::Converter version 2.150010",
+   "license" : [
+      "perl_5"
+   ],
+   "meta-spec" : {
+      "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+      "version" : 2
+   },
+   "name" : "Test-WWW-Mechanize-PSGI",
+   "no_index" : {
+      "directory" : [
+         "examples",
+         "t",
+         "xt"
+      ]
+   },
+   "prereqs" : {
+      "configure" : {
+         "requires" : {
+            "ExtUtils::MakeMaker" : "0"
+         },
+         "suggests" : {
+            "JSON::PP" : "2.27300"
+         }
+      },
+      "develop" : {
+         "requires" : {
+            "Test::CPAN::Changes" : "0.19",
+            "Test::Code::TidyAll" : "0.50",
+            "Test::More" : "0.88",
+            "Test::Synopsis" : "0"
+         }
+      },
+      "runtime" : {
+         "requires" : {
+            "Carp" : "0",
+            "HTTP::Message::PSGI" : "0",
+            "Test::WWW::Mechanize" : "0",
+            "Try::Tiny" : "0",
+            "base" : "0",
+            "strict" : "0",
+            "warnings" : "0"
+         }
+      },
+      "test" : {
+         "recommends" : {
+            "CPAN::Meta" : "2.120900"
+         },
+         "requires" : {
+            "CGI::Cookie" : "0",
+            "ExtUtils::MakeMaker" : "0",
+            "File::Spec" : "0",
+            "Test::More" : "0"
+         }
+      }
+   },
+   "release_status" : "stable",
+   "resources" : {
+      "bugtracker" : {
+         "web" : "https://github.com/acme/test-www-mechanize-psgi/issues"
+      },
+      "homepage" : "https://github.com/acme/test-www-mechanize-psgi",
+      "repository" : {
+         "type" : "git",
+         "url" : "https://github.com/acme/test-www-mechanize-psgi.git",
+         "web" : "https://github.com/acme/test-www-mechanize-psgi"
+      }
+   },
+   "version" : "0.37",
+   "x_contributors" : [
+      "Chia-liang Kao <clkao@clkao.org>",
+      "Olaf Alders <olaf@wundersolutions.com>",
+      "Shin Kojima <shin@kojima.org>",
+      "Tadeusz So\u015bnierz <tadeusz.sosnierz@onet.pl>",
+      "tokuhirom <tokuhirom@gmail.com>"
+   ],
+   "x_serialization_backend" : "Cpanel::JSON::XS version 3.0233"
+}
+
