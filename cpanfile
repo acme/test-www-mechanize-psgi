@@ -3,6 +3,7 @@ requires "HTTP::Message::PSGI" => "0";
 requires "Test::WWW::Mechanize" => "0";
 requires "Try::Tiny" => "0";
 requires "base" => "0";
+requires "perl" => "5.006";
 requires "strict" => "0";
 requires "warnings" => "0";
 
@@ -11,6 +12,7 @@ on 'test' => sub {
   requires "ExtUtils::MakeMaker" => "0";
   requires "File::Spec" => "0";
   requires "Test::More" => "0";
+  requires "perl" => "5.006";
 };
 
 on 'test' => sub {
@@ -19,6 +21,7 @@ on 'test' => sub {
 
 on 'configure' => sub {
   requires "ExtUtils::MakeMaker" => "0";
+  requires "perl" => "5.006";
 };
 
 on 'configure' => sub {

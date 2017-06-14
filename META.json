@@ -23,7 +23,8 @@
    "prereqs" : {
       "configure" : {
          "requires" : {
-            "ExtUtils::MakeMaker" : "0"
+            "ExtUtils::MakeMaker" : "0",
+            "perl" : "5.006"
          },
          "suggests" : {
             "JSON::PP" : "2.27300"
@@ -47,6 +48,7 @@
             "Test::WWW::Mechanize" : "0",
             "Try::Tiny" : "0",
             "base" : "0",
+            "perl" : "5.006",
             "strict" : "0",
             "warnings" : "0"
          }
@@ -59,7 +61,8 @@
             "CGI::Cookie" : "0",
             "ExtUtils::MakeMaker" : "0",
             "File::Spec" : "0",
-            "Test::More" : "0"
+            "Test::More" : "0",
+            "perl" : "5.006"
          }
       }
    },
