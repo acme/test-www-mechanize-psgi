@@ -112,14 +112,14 @@ or false if not.
 
 A default description of "PUT to $url" is used if none if provided.
 
-## $mech->submit\_form\_ok( \\%parms \[, $desc\] )
+## $mech->submit\_form\_ok( \\%params \[, $desc\] )
 
 Makes a `submit_form()` call and executes tests on the results.
 The form must be found, and then submitted successfully.  Otherwise,
 this test fails.
 
-_%parms_ is a hashref containing the parms to pass to `submit_form()`.
-Note that the parms to `submit_form()` are a hash whereas the parms to
+_%params_ is a hashref containing the params to pass to `submit_form()`.
+Note that the params to `submit_form()` are a hash whereas the params to
 this function are a hashref.  You have to call this function like:
 
     $agent->submit_form_ok({
@@ -137,14 +137,14 @@ Returns true value if the specified link was found and followed
 successfully.  The [HTTP::Response](https://metacpan.org/pod/HTTP::Response) object returned by submit\_form()
 is not available.
 
-## $mech->follow\_link\_ok( \\%parms \[, $desc\] )
+## $mech->follow\_link\_ok( \\%params \[, $desc\] )
 
 Makes a `follow_link()` call and executes tests on the results.
 The link must be found, and then followed successfully.  Otherwise,
 this test fails.
 
-_%parms_ is a hashref containing the parms to pass to `follow_link()`.
-Note that the parms to `follow_link()` are a hash whereas the parms to
+_%params_ is a hashref containing the params to pass to `follow_link()`.
+Note that the params to `follow_link()` are a hash whereas the params to
 this function are a hashref.  You have to call this function like:
 
     $mech->follow_link_ok( {n=>3}, "looking for 3rd link" );
@@ -237,8 +237,8 @@ Tells if the page has a `$tag` tag with the given content in its text.
 
 ## $mech->followable\_links()
 
-Returns a list of links that Mech can follow.  This is only http and
-https links.
+Returns a list of links that [WWW::Mechanize](https://metacpan.org/pod/WWW::Mechanize) can follow.  This is only http
+and https links.
 
 ## $mech->page\_links\_ok( \[ $desc \] )
 
@@ -318,7 +318,7 @@ Finds all free-text input fields (text, textarea, and password) in the
 current form and fills them to their maximum length in hopes of finding
 application code that can't handle it.  Fields with no maximum length
 and all textarea fields are set to 66000 bytes, which will often be
-enough to overflow the data's eventual recepticle.
+enough to overflow the data's eventual receptacle.
 
 There is no return value.
 

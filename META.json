@@ -34,6 +34,7 @@
             "Test::CPAN::Changes" : "0.19",
             "Test::Code::TidyAll" : "0.50",
             "Test::More" : "0.88",
+            "Test::Spelling" : "0.12",
             "Test::Synopsis" : "0"
          }
       },
