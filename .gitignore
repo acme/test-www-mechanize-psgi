@@ -1,4 +1,4 @@
+.build
 *.swp
 Test-WWW-Mechanize-PSGI-*
 .tidyall.d
-.build
