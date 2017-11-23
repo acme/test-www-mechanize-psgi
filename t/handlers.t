@@ -23,10 +23,12 @@ my @phases = (
     'response_redirect',
 );
 
+my $slot = 0;
 for my $phase (@phases) {
     $ua->add_handler(
         $phase => sub {
-            $ENV{ phase_to_env($phase) } = 1;
+            $ENV{ phase_to_env($phase) } = $slot;
+            $slot++;
             return undef;
         }
     );
@@ -40,7 +42,15 @@ for my $phase (@phases) {
 $ua->get_ok('/');
 
 for my $phase (@phases) {
-    ok( exists $ENV{ phase_to_env($phase) }, "handler $phase has been run" );
+    subtest $phase => sub {
+        my $name = phase_to_env($phase);
+        ok( exists $ENV{$name}, 'handler fired' );
+        my $slot = $ENV{$name};
+        is(
+            $phase, $phases[$slot],
+            'handler fired in correct order'
+        );
+    };
 }
 
 sub phase_to_env {

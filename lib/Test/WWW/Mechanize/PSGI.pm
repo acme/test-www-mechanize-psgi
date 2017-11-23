@@ -32,13 +32,12 @@ sub new {
 sub simple_request {
     my ( $self, $request ) = @_;
 
-    $self->run_handlers( 'request_send', $request );
-
     my $uri = $request->uri;
     $uri->scheme('http')    unless defined $uri->scheme;
     $uri->host('localhost') unless defined $uri->host;
 
     my $env = $self->prepare_request($request)->to_psgi;
+    $self->run_handlers( 'request_send', $request );
     my $response;
     try {
         $response = HTTP::Response->from_psgi( $self->{app}->($env) );
