@@ -3,8 +3,10 @@ package Test::WWW::Mechanize::PSGI;
 use strict;
 use warnings;
 
+our $VERSION = '0.38';
+
 use Carp qw( confess );
-use HTTP::Message::PSGI ();
+use HTTP::Message::PSGI ();    # adds from_psgi() to HTTP::Response
 use Try::Tiny qw( catch try );
 
 use base 'Test::WWW::Mechanize';
@@ -48,6 +50,24 @@ sub simple_request {
         $response->content_type(q{});
     };
     $response->request($request);
+
+    # Trigger set_my_handler call in LWP::UserAgent::parse_head()
+    $self->run_handlers( 'response_header', $response );
+
+    # Running the reponse_data handlers via run_handlers() doesn't pass all of
+    # the args that are required, so we'll run each handler explicitly.  We do
+    # this here so that we can fire off the handler which gets added in
+    # LWP::UserAgent::parse_head().  Without this handler firing,
+    # LWP::UserAgent::base() will not know about any URL which may have been
+    # set in a <base href="..."> tag.  If we don't know about this tag then we
+    # may end up with an incorrect base URL and, by extension, we could end up
+    # at the wrong location when trying to follow relative URLs.
+
+    for my $handler ( $self->handlers( 'response_data', $response ) ) {
+        $handler->{callback}
+            ->( $response, $self, $handler, $response->content );
+    }
+
     $self->run_handlers( 'response_done', $response );
     return $response;
 }
