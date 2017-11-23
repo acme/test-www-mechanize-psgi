@@ -3,10 +3,9 @@ package Test::WWW::Mechanize::PSGI;
 use strict;
 use warnings;
 
-use Carp;
-use HTTP::Message::PSGI;
-use Test::WWW::Mechanize;
-use Try::Tiny;
+use Carp qw( confess );
+use HTTP::Message::PSGI ();
+use Try::Tiny qw( catch try );
 
 use base 'Test::WWW::Mechanize';
 
@@ -31,7 +30,7 @@ sub new {
 sub simple_request {
     my ( $self, $request ) = @_;
 
-    $self->run_handlers( "request_send", $request );
+    $self->run_handlers( 'request_send', $request );
 
     my $uri = $request->uri;
     $uri->scheme('http')    unless defined $uri->scheme;
@@ -46,10 +45,10 @@ sub simple_request {
         $Test->diag("PSGI error: $_");
         $response = HTTP::Response->new(500);
         $response->content($_);
-        $response->content_type('');
+        $response->content_type(q{});
     };
     $response->request($request);
-    $self->run_handlers( "response_done", $response );
+    $self->run_handlers( 'response_done', $response );
     return $response;
 }
 
