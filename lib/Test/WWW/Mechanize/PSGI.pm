@@ -20,12 +20,14 @@ sub new {
     # Dont let LWP complain about options for our attributes
     my $app = $args{app};
     delete $args{app};
+    my $env = delete $args{env};
     confess('Missing argument app') unless $app;
     confess('Argument app should be a code reference')
         unless ref($app) && ref($app) eq 'CODE';
 
     my $self = $class->SUPER::new(%args);
     $self->{app} = $app;
+    $self->{env} = $env if $env;
     return $self;
 }
 
@@ -36,7 +38,7 @@ sub simple_request {
     $uri->scheme('http')    unless defined $uri->scheme;
     $uri->host('localhost') unless defined $uri->host;
 
-    my $env = $self->prepare_request($request)->to_psgi;
+    my $env = $self->prepare_request($request)->to_psgi(%{$self->{env} || {}});
     $self->run_handlers( 'request_send', $request );
     my $response;
     try {
@@ -141,6 +143,7 @@ in your application:
           my $env = shift;
           return [ 200, [ 'Content-Type' => 'text/plain' ], ['Hello World'] ],;
       },
+      env => { REMOTE_USER => 'Foo Bar' },
   );
 
 =head1 METHODS: HTTP VERBS
