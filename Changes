@@ -1,5 +1,7 @@
 Revision history for Perl module Test::WWW::Mechanize::PSGI:
 
+{{$NEXT}}
+
 0.39      2019-03-22 13:18:19Z
     - Allow to pass additional environmental variables to to_psgi() (GH#6)
       (Kenichi Ishigaki)

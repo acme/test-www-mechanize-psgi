@@ -3,7 +3,7 @@ package Test::WWW::Mechanize::PSGI;
 use strict;
 use warnings;
 
-our $VERSION = '0.39';
+our $VERSION = '0.40';
 
 use Carp qw( confess );
 use HTTP::Message::PSGI ();    # adds from_psgi() to HTTP::Response
