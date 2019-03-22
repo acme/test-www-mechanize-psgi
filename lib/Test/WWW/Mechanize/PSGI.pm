@@ -38,7 +38,8 @@ sub simple_request {
     $uri->scheme('http')    unless defined $uri->scheme;
     $uri->host('localhost') unless defined $uri->host;
 
-    my $env = $self->prepare_request($request)->to_psgi(%{$self->{env} || {}});
+    my $env = $self->prepare_request($request)
+        ->to_psgi( %{ $self->{env} || {} } );
     $self->run_handlers( 'request_send', $request );
     my $response;
     try {
