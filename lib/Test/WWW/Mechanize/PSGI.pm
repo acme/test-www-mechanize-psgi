@@ -142,7 +142,7 @@ in your application:
   my $mech = Test::WWW::Mechanize::PSGI->new(
       app => sub {
           my $env = shift;
-          return [ 200, [ 'Content-Type' => 'text/plain' ], ['Hello World'] ],;
+          return [ 200, [ 'Content-Type' => 'text/plain' ], ['Hello World'] ];
       },
       env => { REMOTE_USER => 'Foo Bar' },
   );
